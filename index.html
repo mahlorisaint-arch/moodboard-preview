@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Moodboard Media — Cinematic Storytelling</title>
-  <meta name="description" content="Moodboard Media is a cinematic storytelling studio focused on film, visual storytelling, and creative direction.">
+  <title>Moodboard Media — Lesego’s creative portfolio</title>
+  <meta name="description" content="Moodboard Media — Creative producer, story development & Female Film Trailblazers. DiepCity, The Black Door, The Mabaso Family Reunion.">
   <meta name="theme-color" content="#000000">
 
   <!-- Fonts -->
@@ -16,25 +16,25 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    /* ===== CINEMATIC CORE ===== */
+    /* core cinematic */
     body {
       font-family: 'Inter', sans-serif;
       background: #000;
       color: #fff;
       overflow-x: hidden;
     }
-    h1, h2, h3 {
+    h1, h2, h3, .pillar-title {
       font-family: 'Playfair Display', serif;
       letter-spacing: -0.02em;
     }
     .gold { color: #d4af37; }
     .gold-bg { background: #d4af37; }
 
-    /* intro / overlay */
+    /* hero overlay + subtle zoom */
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.7) 100%);
+      background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.75) 100%);
       animation: heroZoom 20s infinite alternate ease-in-out;
       z-index: 1;
     }
@@ -43,7 +43,7 @@
       100% { transform: scale(1.02); }
     }
 
-    /* reveal animation */
+    /* fade-up reveal */
     .reveal {
       opacity: 0;
       transform: translateY(40px);
@@ -54,18 +54,19 @@
       transform: translateY(0);
     }
 
-    /* work cards – refined */
+    /* work cards – refined, with overlay for awards */
     .work-card {
       overflow: hidden;
-      border-radius: 1rem;
+      border-radius: 1.5rem;
       position: relative;
       background: #111;
-      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.8);
+      box-shadow: 0 20px 30px -10px black;
+      border: 1px solid rgba(212,175,55,0.1);
     }
     .work-card img {
-      transition: transform 1s ease;
+      transition: transform 0.8s ease;
       width: 100%;
-      height: 280px;
+      height: 260px;
       object-fit: cover;
       display: block;
     }
@@ -76,10 +77,11 @@
     .work-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 50%);
+      background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 60%);
       display: flex;
-      align-items: flex-end;
-      padding: 1.5rem;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.8rem 1.5rem;
       opacity: 0;
       transition: opacity 0.3s ease;
     }
@@ -87,91 +89,97 @@
       opacity: 1;
     }
 
-    /* floating glow particles */
+    /* pillar card */
+    .pillar-card {
+      background: rgba(20,20,20,0.7);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(212,175,55,0.15);
+      border-radius: 2rem;
+      padding: 2rem;
+      transition: 0.2s;
+    }
+
+    /* floating glow particles (subtle) */
     .glow-particle {
       position: fixed;
-      width: 6px;
-      height: 6px;
-      background: rgba(212, 175, 55, 0.3);
+      width: 5px;
+      height: 5px;
+      background: rgba(212, 175, 55, 0.25);
       border-radius: 50%;
       pointer-events: none;
       z-index: 9997;
-      animation: floatGlow 4s infinite ease-in-out;
+      animation: floatGlow 5s infinite ease-in-out;
     }
     @keyframes floatGlow {
-      0% { transform: translateY(0) scale(1); opacity: 0.3; }
-      50% { transform: translateY(-8px) scale(1.2); opacity: 0.6; }
-      100% { transform: translateY(0) scale(1); opacity: 0.3; }
+      0% { transform: translateY(0) scale(1); opacity: 0.2; }
+      50% { transform: translateY(-12px) scale(1.3); opacity: 0.5; }
+      100% { transform: translateY(0) scale(1); opacity: 0.2; }
     }
 
-    /* mouse glow (subtle) */
+    /* mouse glow */
     #mouseGlow {
       position: fixed;
-      width: 180px;
-      height: 180px;
-      background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
       z-index: 9998;
       transform: translate(-50%, -50%);
-      transition: opacity 0.2s;
     }
 
-    /* ensure headers above effects */
-    .fixed, header, footer { z-index: 50; }
+    /* video placeholder / cinematic loop (poster + subtle loop simulation) */
+    .hero-vid {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.5;
+    }
   </style>
 </head>
 <body>
 
-<!-- ===== PREVIEW BANNER (client‑winning clarity) ===== -->
+<!-- preview banner (client‑winning) -->
 <div class="bg-yellow-500 text-black text-center text-sm py-2 font-medium tracking-wide">
-  🎬 Moodboard Media — Website Concept Preview created for discussion purposes.
+  🎬 Moodboard Media — concept preview created for discussion with Lesego · all projects based on her brief
 </div>
 
 <!-- ===== CINEMATIC INTRO (fade‑out) ===== -->
 <div id="cinematicIntro" class="fixed inset-0 bg-black z-[9999] flex items-center justify-center">
   <h1 class="text-5xl md:text-7xl font-playfair text-gold animate-pulse">Moodboard Media</h1>
 </div>
-
 <script>
   (function() {
-    // fade out cinematic intro after 3 seconds
     setTimeout(() => {
       const intro = document.getElementById('cinematicIntro');
       if (intro) {
         intro.style.transition = 'opacity 1s ease';
         intro.style.opacity = '0';
-        setTimeout(() => {
-          if (intro && intro.parentNode) intro.remove();
-        }, 1000);
+        setTimeout(() => intro.remove(), 1000);
       }
     }, 2800);
   })();
 </script>
 
-<!-- ===== MOUSE GLOW (floating particle effect) ===== -->
-<div id="mouseGlow" style="position: fixed; opacity: 0.5;"></div>
+<!-- mouse glow & particles -->
+<div id="mouseGlow"></div>
 <script>
   (function() {
     const glow = document.getElementById('mouseGlow');
-    if (!glow) return;
-    document.addEventListener('mousemove', function(e) {
-      glow.style.left = e.clientX + 'px';
-      glow.style.top = e.clientY + 'px';
-    });
-  })();
-</script>
-
-<!-- generate floating glow particles (subtle luxury) -->
-<script>
-  (function() {
+    if (glow) {
+      document.addEventListener('mousemove', (e) => {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+      });
+    }
     for (let i = 0; i < 10; i++) {
-      const particle = document.createElement('div');
-      particle.classList.add('glow-particle');
-      particle.style.left = Math.random() * 100 + '%';
-      particle.style.top = Math.random() * 100 + '%';
-      particle.style.animationDelay = (i * 0.3) + 's';
-      document.body.appendChild(particle);
+      const p = document.createElement('div');
+      p.classList.add('glow-particle');
+      p.style.left = Math.random() * 100 + '%';
+      p.style.top = Math.random() * 100 + '%';
+      p.style.animationDelay = (i * 0.4) + 's';
+      document.body.appendChild(p);
     }
   })();
 </script>
@@ -182,149 +190,137 @@
     <h2 class="text-lg font-semibold gold">Moodboard Media</h2>
     <nav class="hidden md:flex gap-8 text-sm text-white/70">
       <a href="#pillars" class="hover:text-white">Pillars</a>
-      <a href="#work" class="hover:text-white">Work</a>
+      <a href="#work" class="hover:text-white">Projects</a>
       <a href="#about" class="hover:text-white">About</a>
       <a href="#contact" class="hover:text-white">Contact</a>
     </nav>
   </div>
 </header>
 
-<!-- ===== HERO (cinematic depth) ===== -->
+<!-- ===== HERO with cinematic mood video loop (30‑second aesthetic) ===== -->
 <section class="relative h-screen flex items-center justify-center text-center overflow-hidden">
-  <img src="https://images.unsplash.com/photo-1517602302552-471fe67acf66?q=80&w=2070&auto=format&fit=crop"
-       class="absolute w-full h-full object-cover opacity-40"
-       alt="cinematic set">
+  <!-- video placeholder – we use a muted loop that feels cinematic (abstract cinema) -->
+  <video class="hero-vid" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1517602302552-471fe67acf66?q=80&w=2070&auto=format&fit=crop">
+    <!-- small mp4 loop from coverr (free cinematic) — fast‑loading -->
+    <source src="https://coverr.co/s3/mp4/Looking-at-the-city.mp4" type="video/mp4">
+    <!-- fallback image if video fails -->
+    <img src="https://images.unsplash.com/photo-1517602302552-471fe67acf66?q=80&w=2070&auto=format&fit=crop" alt="cinematic background">
+  </video>
   <div class="hero-overlay"></div>
-  <div class="relative max-w-3xl px-6 reveal" style="z-index:10;">
-    <p class="text-sm uppercase tracking-widest text-white/60 mb-6">
-      Concept Website Preview
-    </p>
-    <h1 class="text-5xl md:text-6xl font-semibold mb-6 leading-tight">
-      Cinematic Stories <span class="gold">That Inspire</span>
+
+  <div class="relative max-w-4xl px-6 reveal" style="z-index:10;">
+    <p class="text-sm uppercase tracking-widest text-white/60 mb-6">creative storytelling · strategic content · industry experience</p>
+    <h1 class="text-5xl md:text-7xl font-semibold mb-6 leading-tight">
+      Moodboard <span class="gold">Media</span>
     </h1>
-    <p class="text-lg text-white/70 mb-8">
-      Moodboard Media is a creative studio dedicated to cinematic storytelling, visual direction, and meaningful media that connects with audiences.
+    <p class="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
+      Creative producer · story development · script writing · content strategy
     </p>
-    <a href="#contact" class="gold-bg text-black px-8 py-3 rounded-full text-sm font-medium hover:bg-yellow-400 transition">
-      Get In Touch
+    <a href="#pillars" class="gold-bg text-black px-8 py-3 rounded-full text-sm font-medium hover:bg-yellow-400 transition shadow-xl">
+      Explore the vision
     </a>
   </div>
 </section>
 
-<!-- ===== THREE PILLARS (expanded, with Lesego's vision) ===== -->
+<!-- ===== THREE PILLARS (exact from Lesego’s description) ===== -->
 <section id="pillars" class="py-28 px-6 bg-black">
-  <div class="max-w-6xl mx-auto text-center">
-    <h2 class="text-3xl md:text-4xl mb-16 reveal gold">Our Creative Pillars</h2>
-    <div class="grid md:grid-cols-3 gap-12 text-left">
-
-      <!-- Pillar 1: Lesego Says / Productions -->
-      <div class="reveal bg-white/5 p-8 rounded-2xl border border-white/10">
-        <h3 class="text-2xl mb-4 gold">Lesego Says — Productions</h3>
-        <p class="text-white/70 leading-relaxed">
-          Creative producer, scriptwriting & storytelling. From <span class="gold font-medium">DiepCity</span> to <span class="gold font-medium">The Black Door</span> and <span class="gold font-medium">The Mabaso Family Reunion</span> — we craft narratives that resonate across screens.
-        </p>
-      </div>
-
-      <!-- Pillar 2: Moodboard Media services (content) -->
-      <div class="reveal bg-white/5 p-8 rounded-2xl border border-white/10">
-        <h3 class="text-2xl mb-4 gold">Moodboard Media — Content</h3>
-        <p class="text-white/70 leading-relaxed">
-          Event coverage, digital campaigns & brand storytelling. We elevate productions with a cinematic eye, covering behind-the-scenes, promos and creative strategy for today’s audiences.
-        </p>
-      </div>
-
-      <!-- Pillar 3: Female Film Trailblazers initiative -->
-      <div class="reveal bg-white/5 p-8 rounded-2xl border border-white/10">
-        <h3 class="text-2xl mb-4 gold">Female Film Trailblazers</h3>
-        <p class="text-white/70 leading-relaxed">
-          Mentorship, networking & empowerment for women in film. A thriving community supporting the next generation of storytellers through workshops, panels and real industry access.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ===== EXPANDED WORK SECTION – Lesego's actual projects ===== -->
-<section id="work" class="py-28 bg-black/95 px-6 border-t border-white/5">
   <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl md:text-4xl text-center mb-6 reveal gold">Selected Productions</h2>
-    <p class="text-white/50 text-center max-w-2xl mx-auto mb-16 reveal">Work across film, television and the Female Film Trailblazers initiative.</p>
+    <h2 class="text-3xl md:text-4xl text-center mb-4 reveal gold">Three pillars</h2>
+    <p class="text-white/50 text-center max-w-2xl mx-auto mb-16 reveal">as defined by Lesego’s work and initiatives</p>
 
     <div class="grid md:grid-cols-3 gap-8">
 
-      <!-- DiepCity -->
-      <div class="work-card reveal group">
-        <img src="https://images.unsplash.com/photo-1517602302552-471fe67acf66?q=80&w=2070&auto=format&fit=crop" alt="DiepCity">
-        <div class="work-overlay">
-          <h3 class="text-2xl gold">DiepCity <span class="block text-sm text-white/70">Drama series</span></h3>
-        </div>
+      <!-- Pillar 1: Lesego Says (creative producer) -->
+      <div class="pillar-card reveal">
+        <h3 class="text-2xl mb-3 gold flex items-center gap-2">🎬 Lesego Says</h3>
+        <p class="text-white/80 text-sm mb-4">Creative Producer — story development, script editing, script writing</p>
+        <ul class="text-white/60 text-sm space-y-2 list-disc pl-5">
+          <li><span class="gold">DiepCity</span> (Multi‑choice drama) – Royalty Soapie Awards 2021 (7 wins incl. Best Daily Drama), SAFTAs 2022 Best Telenovela</li>
+          <li><span class="gold">The Black Door</span> (eTV, Risqué) – Royalty Awards 2023 (16 noms), SAFTAs 2023 (5 noms, 2 awards)</li>
+          <li><span class="gold">The Mabaso Family Reunion</span> (Netflix comedy) – SAFTAs 2026 (7 noms incl. Best TV Comedy)</li>
+        </ul>
       </div>
 
-      <!-- The Black Door -->
-      <div class="work-card reveal group">
-        <img src="https://images.unsplash.com/photo-1497032205916-ac775f0649ae?q=80&w=2070&auto=format&fit=crop" alt="The Black Door">
-        <div class="work-overlay">
-          <h3 class="text-2xl gold">The Black Door <span class="block text-sm text-white/70">Telenovela</span></h3>
-        </div>
+      <!-- Pillar 2: Moodboard Media (services) -->
+      <div class="pillar-card reveal">
+        <h3 class="text-2xl mb-3 gold flex items-center gap-2">🎥 Moodboard Media</h3>
+        <p class="text-white/80 text-sm mb-4">Event highlights, social media content creation, content strategy</p>
+        <p class="text-white/60 text-sm">Client work across industries — from behind‑the‑scenes at major productions to digital campaigns and brand storytelling.</p>
       </div>
 
-      <!-- The Mabaso Family Reunion -->
-      <div class="work-card reveal group">
-        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2070&auto=format&fit=crop" alt="The Mabaso Family Reunion">
-        <div class="work-overlay">
-          <h3 class="text-2xl gold">Mabaso Reunion <span class="block text-sm text-white/70">Family drama</span></h3>
-        </div>
-      </div>
-
-      <!-- Generations -->
-      <div class="work-card reveal group">
-        <img src="https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?q=80&w=2070&auto=format&fit=crop" alt="Generations">
-        <div class="work-overlay">
-          <h3 class="text-2xl gold">Generations <span class="block text-sm text-white/70">Iconic soapie</span></h3>
-        </div>
-      </div>
-
-      <!-- Isidingo -->
-      <div class="work-card reveal group">
-        <img src="https://images.unsplash.com/photo-1586899028174-e7098604235b?q=80&w=2071&auto=format&fit=crop" alt="Isidingo">
-        <div class="work-overlay">
-          <h3 class="text-2xl gold">Isidingo <span class="block text-sm text-white/70">Daytime drama</span></h3>
-        </div>
-      </div>
-
-      <!-- Muvhango + Independent Films -->
-      <div class="work-card reveal group">
-        <img src="https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?q=80&w=2070&auto=format&fit=crop" alt="Muvhango & indie films">
-        <div class="work-overlay">
-          <h3 class="text-2xl gold">Muvhango & Indie <span class="block text-sm text-white/70">+ independent features</span></h3>
-        </div>
-      </div>
-    </div>
-
-    <!-- Female Film Trailblazers initiative (extra card) -->
-    <div class="mt-12 text-center reveal">
-      <div class="inline-block bg-gradient-to-r from-yellow-900/30 to-black p-6 rounded-2xl border border-gold/30 max-w-2xl">
-        <h3 class="text-2xl gold mb-3">Female Film Trailblazers</h3>
-        <p class="text-white/70">Mentorship networking & empowerment – a dedicated hub for women in film. Workshops, screenings and industry connections.</p>
+      <!-- Pillar 3: Female Film Trailblazers -->
+      <div class="pillar-card reveal">
+        <h3 class="text-2xl mb-3 gold flex items-center gap-2">🚺 Female Film Trailblazers</h3>
+        <p class="text-white/80 text-sm mb-4">Female‑led initiative empowering emerging female filmmakers</p>
+        <ul class="text-white/60 text-sm space-y-2 list-disc pl-5">
+          <li>Profiling established women in film & TV</li>
+          <li>Networking events (online & physical)</li>
+          <li>Mentorship & workshops</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== ABOUT (fully comprehensive: soapies, indies, mentorship) ===== -->
+<!-- ===== WORK / PROJECTS (exact from pillar 1 with full accolades) ===== -->
+<section id="work" class="py-28 bg-black/90 px-6 border-t border-white/5">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl text-center mb-4 reveal gold">Selected productions</h2>
+    <p class="text-white/50 text-center max-w-2xl mx-auto mb-16 reveal">Lesego’s work as creative producer — awards & nominations</p>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <!-- DiepCity card -->
+      <div class="work-card reveal">
+        <img src="https://images.unsplash.com/photo-1517602302552-471fe67acf66?q=80&w=2070&auto=format&fit=crop" alt="DiepCity">
+        <div class="work-overlay">
+          <h3 class="text-2xl gold">DiepCity</h3>
+          <p class="text-sm text-white/80 mt-1">Multi‑choice drama</p>
+          <p class="text-xs text-white/60 mt-2">🏆 Royalty Soapie Awards 2021 (7 wins – Best Daily Drama)<br>🏆 SAFTAs 2022 Best Telenovela</p>
+        </div>
+      </div>
+
+      <!-- The Black Door card -->
+      <div class="work-card reveal">
+        <img src="https://images.unsplash.com/photo-1497032205916-ac775f0649ae?q=80&w=2070&auto=format&fit=crop" alt="The Black Door">
+        <div class="work-overlay">
+          <h3 class="text-2xl gold">The Black Door</h3>
+          <p class="text-sm text-white/80 mt-1">eTV, Risqué</p>
+          <p class="text-xs text-white/60 mt-2">🏆 Royalty Awards 2023 (16 noms)<br>🏆 SAFTAs 2023 (5 noms, 2 awards)</p>
+        </div>
+      </div>
+
+      <!-- The Mabaso Family Reunion card -->
+      <div class="work-card reveal">
+        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2070&auto=format&fit=crop" alt="The Mabaso Family Reunion">
+        <div class="work-overlay">
+          <h3 class="text-2xl gold">The Mabaso Family Reunion</h3>
+          <p class="text-sm text-white/80 mt-1">Netflix comedy</p>
+          <p class="text-xs text-white/60 mt-2">🏆 SAFTAs 2026 (7 noms – incl. Best TV Comedy)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- additional context: she also works on other soaps/indies but focus on above -->
+    <p class="text-white/40 text-center text-sm mt-12 max-w-3xl mx-auto">
+      ⭐ extensive experience across <span class="gold">Generations, Isidingo, Muvhango</span> and independent films — always developing bold stories.
+    </p>
+  </div>
+</section>
+
+<!-- ===== ABOUT (Lesego’s bio exactly as described) ===== -->
 <section id="about" class="py-28 px-6 bg-black">
   <div class="max-w-4xl mx-auto text-center reveal">
-    <h2 class="text-3xl md:text-4xl mb-8 gold">About Lesego & Moodboard Media</h2>
-    <div class="text-white/80 leading-relaxed space-y-5 text-lg">
+    <h2 class="text-3xl md:text-4xl mb-8 gold">About Lesego</h2>
+    <div class="text-white/80 leading-relaxed space-y-6 text-lg">
       <p>
-        <span class="gold font-semibold">Moodboard Media</span> is the creative heart of storyteller and producer <span class="gold">Lesego</span>. With extensive experience across South African television — including <span class="gold">Generations</span>, <span class="gold">Isidingo</span>, <span class="gold">Muvhango</span>, <span class="gold">DiepCity</span>, <span class="gold">The Black Door</span>, and <span class="gold">The Mabaso Family Reunion</span> — Lesego crafts narratives that linger.
+        <span class="gold font-semibold">Lesego</span> is a creative producer with deep roots in South African film and television. Her work spans <span class="gold">DiepCity, The Black Door, The Mabaso Family Reunion</span>, and beloved soaps like <span class="gold">Generations, Isidingo, Muvhango</span>. With a focus on story development, script editing, and writing, she brings narratives to life across genres.
       </p>
       <p>
-        Beyond soaps, Lesego has nurtured <span class="gold">independent films</span> and champions the <span class="gold">Female Film Trailblazers</span> initiative: a mentorship and networking platform elevating women behind the camera. Moodboard Media is the umbrella for cinematic production, creative direction, and content strategy that connects.
+        Through <span class="gold font-semibold">Moodboard Media</span>, she offers content strategy, event highlights, and social media creation for clients across industries. And as founder of the <span class="gold">Female Film Trailblazers</span> initiative, she mentors and connects emerging female filmmakers through events, networking, and profiling established professionals.
       </p>
-      <p class="text-white/60 text-base pt-4">
-        ⚡ From script to screen, we build stories with purpose.
+      <p class="text-white/50 text-base pt-4">
+        Creative producing · industry experience · empowering the next generation
       </p>
     </div>
   </div>
@@ -333,44 +329,39 @@
 <!-- ===== CONTACT / CTA ===== -->
 <section id="contact" class="py-28 bg-black text-center px-6 border-t border-white/10">
   <div class="max-w-xl mx-auto reveal">
-    <h2 class="text-3xl md:text-4xl mb-6 gold">Let's Create Something Powerful</h2>
+    <h2 class="text-3xl md:text-4xl mb-6 gold">Let’s collaborate</h2>
     <p class="text-white/70 mb-10 text-lg">
-      For collaborations, creative projects, production inquiries or mentorship opportunities.
+      For production inquiries, script development, content strategy, or to connect with Female Film Trailblazers.
     </p>
-    <a href="mailto:hello@moodboardmedia.com" class="gold-bg text-black px-10 py-4 rounded-full text-lg font-medium hover:bg-yellow-400 transition inline-block shadow-lg">
+    <a href="mailto:hello@moodboardmedia.com" class="gold-bg text-black px-10 py-4 rounded-full text-lg font-medium hover:bg-yellow-400 transition inline-block shadow-xl">
       hello@moodboardmedia.com
     </a>
-    <p class="mt-8 text-white/40 text-sm">or reach out for DiepCity / The Black Door / Female Film Trailblazers</p>
+    <p class="mt-8 text-white/30 text-sm">DiepCity · The Black Door · The Mabaso Family Reunion · Female Film Trailblazers</p>
   </div>
 </section>
 
 <!-- ===== FOOTER ===== -->
 <footer class="py-8 text-center text-white/30 text-sm border-t border-white/5">
-  <p>© 2026 Moodboard Media — website concept preview created for discussion with Lesego</p>
+  <p>© 2026 Moodboard Media — concept preview by Mahlori Mhlanga · Bantu Stream Connect</p>
+  <p class="text-xs text-white/20 mt-1">created for discussion with Lesego, based on her exact pillars and awards</p>
 </footer>
 
-<!-- ===== REVEAL OBSERVER ===== -->
+<!-- reveal observer -->
 <script>
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('active');
     });
   }, { threshold: 0.15 });
-
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
-<!-- ensure cinematic intro removal backup & no glitch -->
+<!-- extra safety for intro -->
 <script>
-  (function(){
-    // extra safety if intro survives (should be removed already)
-    setTimeout(() => {
-      const intro = document.getElementById('cinematicIntro');
-      if(intro) intro.style.display = 'none';
-    }, 3500);
-  })();
+  setTimeout(() => {
+    const leftover = document.getElementById('cinematicIntro');
+    if (leftover) leftover.style.display = 'none';
+  }, 3500);
 </script>
 
 </body>
