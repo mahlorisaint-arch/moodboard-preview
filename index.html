@@ -1,293 +1,376 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moodboard Media — Cinematic Storytelling</title>
+  <meta name="description" content="Moodboard Media is a cinematic storytelling studio focused on film, visual storytelling, and creative direction.">
+  <meta name="theme-color" content="#000000">
 
-<title>Moodboard Media — Cinematic Storytelling</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
-<meta name="description" content="Moodboard Media is a cinematic storytelling studio focused on film, visual storytelling, and creative direction.">
+  <!-- Tailwind (light) -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-<meta name="theme-color" content="#000000">
+  <style>
+    /* ===== CINEMATIC CORE ===== */
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: -0.02em;
+    }
+    .gold { color: #d4af37; }
+    .gold-bg { background: #d4af37; }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    /* intro / overlay */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.7) 100%);
+      animation: heroZoom 20s infinite alternate ease-in-out;
+      z-index: 1;
+    }
+    @keyframes heroZoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.02); }
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    /* reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-<script src="https://cdn.tailwindcss.com"></script>
+    /* work cards – refined */
+    .work-card {
+      overflow: hidden;
+      border-radius: 1rem;
+      position: relative;
+      background: #111;
+      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.8);
+    }
+    .work-card img {
+      transition: transform 1s ease;
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+    }
+    .work-card:hover img {
+      transform: scale(1.05);
+    }
 
-<style>
+    .work-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 50%);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .work-card:hover .work-overlay {
+      opacity: 1;
+    }
 
-body{
-font-family:'Inter',sans-serif;
-background:#000;
-color:#fff;
-overflow-x:hidden;
-}
+    /* floating glow particles */
+    .glow-particle {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      background: rgba(212, 175, 55, 0.3);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9997;
+      animation: floatGlow 4s infinite ease-in-out;
+    }
+    @keyframes floatGlow {
+      0% { transform: translateY(0) scale(1); opacity: 0.3; }
+      50% { transform: translateY(-8px) scale(1.2); opacity: 0.6; }
+      100% { transform: translateY(0) scale(1); opacity: 0.3; }
+    }
 
-h1,h2,h3{
-font-family:'Playfair Display',serif;
-letter-spacing:-0.02em;
-}
+    /* mouse glow (subtle) */
+    #mouseGlow {
+      position: fixed;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.2s;
+    }
 
-.gold{
-color:#d4af37;
-}
-
-.gold-bg{
-background:#d4af37;
-}
-
-.hero-overlay{
-position:absolute;
-inset:0;
-background:linear-gradient(to bottom, rgba(0,0,0,.6), rgba(0,0,0,.9));
-}
-
-.reveal{
-opacity:0;
-transform:translateY(40px);
-transition:all .8s ease;
-}
-
-.reveal.active{
-opacity:1;
-transform:translateY(0);
-}
-
-.work-card{
-overflow:hidden;
-border-radius:1rem;
-}
-
-.work-card img{
-transition:transform 1s ease;
-}
-
-.work-card:hover img{
-transform:scale(1.05);
-}
-
-</style>
-
+    /* ensure headers above effects */
+    .fixed, header, footer { z-index: 50; }
+  </style>
 </head>
-
 <body>
 
-<!-- NAVBAR -->
-
-<header class="fixed w-full z-50 bg-black/60 backdrop-blur border-b border-white/10">
-
-<div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
-
-<h2 class="text-lg font-semibold gold">Moodboard Media</h2>
-
-<nav class="hidden md:flex gap-8 text-sm text-white/70">
-
-<a href="#pillars" class="hover:text-white">Pillars</a>
-<a href="#work" class="hover:text-white">Work</a>
-<a href="#about" class="hover:text-white">About</a>
-<a href="#contact" class="hover:text-white">Contact</a>
-
-</nav>
-
+<!-- ===== PREVIEW BANNER (client‑winning clarity) ===== -->
+<div class="bg-yellow-500 text-black text-center text-sm py-2 font-medium tracking-wide">
+  🎬 Moodboard Media — Website Concept Preview created for discussion purposes.
 </div>
 
-</header>
-
-
-<!-- HERO -->
-
-<section class="relative h-screen flex items-center justify-center text-center">
-
-<img src="https://images.unsplash.com/photo-1517602302552-471fe67acf66?q=80&w=2070&auto=format&fit=crop"
-class="absolute w-full h-full object-cover opacity-40">
-
-<div class="hero-overlay"></div>
-
-<div class="relative max-w-3xl px-6 reveal">
-
-<p class="text-sm uppercase tracking-widest text-white/60 mb-6">
-Concept Website Preview
-</p>
-
-<h1 class="text-5xl md:text-6xl font-semibold mb-6 leading-tight">
-
-Cinematic Stories  
-<span class="gold">That Inspire</span>
-
-</h1>
-
-<p class="text-lg text-white/70 mb-8">
-
-Moodboard Media is a creative studio dedicated to cinematic storytelling, visual direction, and meaningful media that connects with audiences.
-
-</p>
-
-<a href="#contact"
-class="gold-bg text-black px-8 py-3 rounded-full text-sm font-medium">
-
-Get In Touch
-
-</a>
-
+<!-- ===== CINEMATIC INTRO (fade‑out) ===== -->
+<div id="cinematicIntro" class="fixed inset-0 bg-black z-[9999] flex items-center justify-center">
+  <h1 class="text-5xl md:text-7xl font-playfair text-gold animate-pulse">Moodboard Media</h1>
 </div>
-
-</section>
-
-
-<!-- PILLARS -->
-
-<section id="pillars" class="py-28 px-6">
-
-<div class="max-w-6xl mx-auto text-center">
-
-<h2 class="text-3xl mb-16 reveal">Our Creative Pillars</h2>
-
-<div class="grid md:grid-cols-3 gap-10 text-left">
-
-<div class="reveal">
-
-<h3 class="text-xl mb-4 gold">Productions</h3>
-
-<p class="text-white/70">
-We create cinematic visual stories across film, digital media, and creative campaigns designed to leave lasting impressions.
-</p>
-
-</div>
-
-<div class="reveal">
-
-<h3 class="text-xl mb-4 gold">Creative Direction</h3>
-
-<p class="text-white/70">
-From concept to execution, we shape visual identities and creative narratives that elevate brands and storytellers.
-</p>
-
-</div>
-
-<div class="reveal">
-
-<h3 class="text-xl mb-4 gold">Education</h3>
-
-<p class="text-white/70">
-We support the next generation of storytellers through workshops, mentorship, and creative learning opportunities.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- WORK -->
-
-<section id="work" class="py-28 bg-black px-6">
-
-<div class="max-w-6xl mx-auto">
-
-<h2 class="text-3xl text-center mb-16 reveal">Selected Work</h2>
-
-<div class="grid md:grid-cols-3 gap-8">
-
-<div class="work-card reveal">
-
-<img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2069&auto=format&fit=crop">
-
-</div>
-
-<div class="work-card reveal">
-
-<img src="https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?q=80&w=2069&auto=format&fit=crop">
-
-</div>
-
-<div class="work-card reveal">
-
-<img src="https://images.unsplash.com/photo-1497032205916-ac775f0649ae?q=80&w=2069&auto=format&fit=crop">
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ABOUT -->
-
-<section id="about" class="py-28 px-6">
-
-<div class="max-w-3xl mx-auto text-center reveal">
-
-<h2 class="text-3xl mb-8">About Moodboard Media</h2>
-
-<p class="text-white/70 leading-relaxed">
-
-Moodboard Media is a creative storytelling studio focused on cinematic narratives, visual identity, and impactful media experiences.  
-Through film, creative direction, and collaborative storytelling, we aim to create work that resonates emotionally and visually with audiences.
-
-</p>
-
-</div>
-
-</section>
-
-
-<!-- CONTACT -->
-
-<section id="contact" class="py-28 bg-black text-center px-6">
-
-<div class="max-w-xl mx-auto reveal">
-
-<h2 class="text-3xl mb-6">Let's Create Something Powerful</h2>
-
-<p class="text-white/70 mb-10">
-
-For collaborations, creative projects, or production inquiries.
-
-</p>
-
-<a href="mailto:hello@moodboardmedia.com"
-class="gold-bg text-black px-8 py-3 rounded-full text-sm font-medium">
-
-hello@moodboardmedia.com
-
-</a>
-
-</div>
-
-</section>
-
-
-<!-- FOOTER -->
-
-<footer class="py-10 text-center text-white/40 text-sm border-t border-white/10">
-
-<p>© 2026 Moodboard Media</p>
-
-</footer>
-
 
 <script>
+  (function() {
+    // fade out cinematic intro after 3 seconds
+    setTimeout(() => {
+      const intro = document.getElementById('cinematicIntro');
+      if (intro) {
+        intro.style.transition = 'opacity 1s ease';
+        intro.style.opacity = '0';
+        setTimeout(() => {
+          if (intro && intro.parentNode) intro.remove();
+        }, 1000);
+      }
+    }, 2800);
+  })();
+</script>
 
-const observer = new IntersectionObserver(entries => {
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add('active')
-}
-})
-})
+<!-- ===== MOUSE GLOW (floating particle effect) ===== -->
+<div id="mouseGlow" style="position: fixed; opacity: 0.5;"></div>
+<script>
+  (function() {
+    const glow = document.getElementById('mouseGlow');
+    if (!glow) return;
+    document.addEventListener('mousemove', function(e) {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+    });
+  })();
+</script>
 
-document.querySelectorAll('.reveal').forEach(el=>{
-observer.observe(el)
-})
+<!-- generate floating glow particles (subtle luxury) -->
+<script>
+  (function() {
+    for (let i = 0; i < 10; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('glow-particle');
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.top = Math.random() * 100 + '%';
+      particle.style.animationDelay = (i * 0.3) + 's';
+      document.body.appendChild(particle);
+    }
+  })();
+</script>
 
+<!-- ===== NAVBAR ===== -->
+<header class="fixed w-full z-50 bg-black/60 backdrop-blur border-b border-white/10">
+  <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
+    <h2 class="text-lg font-semibold gold">Moodboard Media</h2>
+    <nav class="hidden md:flex gap-8 text-sm text-white/70">
+      <a href="#pillars" class="hover:text-white">Pillars</a>
+      <a href="#work" class="hover:text-white">Work</a>
+      <a href="#about" class="hover:text-white">About</a>
+      <a href="#contact" class="hover:text-white">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO (cinematic depth) ===== -->
+<section class="relative h-screen flex items-center justify-center text-center overflow-hidden">
+  <img src="https://images.unsplash.com/photo-1517602302552-471fe67acf66?q=80&w=2070&auto=format&fit=crop"
+       class="absolute w-full h-full object-cover opacity-40"
+       alt="cinematic set">
+  <div class="hero-overlay"></div>
+  <div class="relative max-w-3xl px-6 reveal" style="z-index:10;">
+    <p class="text-sm uppercase tracking-widest text-white/60 mb-6">
+      Concept Website Preview
+    </p>
+    <h1 class="text-5xl md:text-6xl font-semibold mb-6 leading-tight">
+      Cinematic Stories <span class="gold">That Inspire</span>
+    </h1>
+    <p class="text-lg text-white/70 mb-8">
+      Moodboard Media is a creative studio dedicated to cinematic storytelling, visual direction, and meaningful media that connects with audiences.
+    </p>
+    <a href="#contact" class="gold-bg text-black px-8 py-3 rounded-full text-sm font-medium hover:bg-yellow-400 transition">
+      Get In Touch
+    </a>
+  </div>
+</section>
+
+<!-- ===== THREE PILLARS (expanded, with Lesego's vision) ===== -->
+<section id="pillars" class="py-28 px-6 bg-black">
+  <div class="max-w-6xl mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl mb-16 reveal gold">Our Creative Pillars</h2>
+    <div class="grid md:grid-cols-3 gap-12 text-left">
+
+      <!-- Pillar 1: Lesego Says / Productions -->
+      <div class="reveal bg-white/5 p-8 rounded-2xl border border-white/10">
+        <h3 class="text-2xl mb-4 gold">Lesego Says — Productions</h3>
+        <p class="text-white/70 leading-relaxed">
+          Creative producer, scriptwriting & storytelling. From <span class="gold font-medium">DiepCity</span> to <span class="gold font-medium">The Black Door</span> and <span class="gold font-medium">The Mabaso Family Reunion</span> — we craft narratives that resonate across screens.
+        </p>
+      </div>
+
+      <!-- Pillar 2: Moodboard Media services (content) -->
+      <div class="reveal bg-white/5 p-8 rounded-2xl border border-white/10">
+        <h3 class="text-2xl mb-4 gold">Moodboard Media — Content</h3>
+        <p class="text-white/70 leading-relaxed">
+          Event coverage, digital campaigns & brand storytelling. We elevate productions with a cinematic eye, covering behind-the-scenes, promos and creative strategy for today’s audiences.
+        </p>
+      </div>
+
+      <!-- Pillar 3: Female Film Trailblazers initiative -->
+      <div class="reveal bg-white/5 p-8 rounded-2xl border border-white/10">
+        <h3 class="text-2xl mb-4 gold">Female Film Trailblazers</h3>
+        <p class="text-white/70 leading-relaxed">
+          Mentorship, networking & empowerment for women in film. A thriving community supporting the next generation of storytellers through workshops, panels and real industry access.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPANDED WORK SECTION – Lesego's actual projects ===== -->
+<section id="work" class="py-28 bg-black/95 px-6 border-t border-white/5">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl md:text-4xl text-center mb-6 reveal gold">Selected Productions</h2>
+    <p class="text-white/50 text-center max-w-2xl mx-auto mb-16 reveal">Work across film, television and the Female Film Trailblazers initiative.</p>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <!-- DiepCity -->
+      <div class="work-card reveal group">
+        <img src="https://images.unsplash.com/photo-1517602302552-471fe67acf66?q=80&w=2070&auto=format&fit=crop" alt="DiepCity">
+        <div class="work-overlay">
+          <h3 class="text-2xl gold">DiepCity <span class="block text-sm text-white/70">Drama series</span></h3>
+        </div>
+      </div>
+
+      <!-- The Black Door -->
+      <div class="work-card reveal group">
+        <img src="https://images.unsplash.com/photo-1497032205916-ac775f0649ae?q=80&w=2070&auto=format&fit=crop" alt="The Black Door">
+        <div class="work-overlay">
+          <h3 class="text-2xl gold">The Black Door <span class="block text-sm text-white/70">Telenovela</span></h3>
+        </div>
+      </div>
+
+      <!-- The Mabaso Family Reunion -->
+      <div class="work-card reveal group">
+        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2070&auto=format&fit=crop" alt="The Mabaso Family Reunion">
+        <div class="work-overlay">
+          <h3 class="text-2xl gold">Mabaso Reunion <span class="block text-sm text-white/70">Family drama</span></h3>
+        </div>
+      </div>
+
+      <!-- Generations -->
+      <div class="work-card reveal group">
+        <img src="https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?q=80&w=2070&auto=format&fit=crop" alt="Generations">
+        <div class="work-overlay">
+          <h3 class="text-2xl gold">Generations <span class="block text-sm text-white/70">Iconic soapie</span></h3>
+        </div>
+      </div>
+
+      <!-- Isidingo -->
+      <div class="work-card reveal group">
+        <img src="https://images.unsplash.com/photo-1586899028174-e7098604235b?q=80&w=2071&auto=format&fit=crop" alt="Isidingo">
+        <div class="work-overlay">
+          <h3 class="text-2xl gold">Isidingo <span class="block text-sm text-white/70">Daytime drama</span></h3>
+        </div>
+      </div>
+
+      <!-- Muvhango + Independent Films -->
+      <div class="work-card reveal group">
+        <img src="https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?q=80&w=2070&auto=format&fit=crop" alt="Muvhango & indie films">
+        <div class="work-overlay">
+          <h3 class="text-2xl gold">Muvhango & Indie <span class="block text-sm text-white/70">+ independent features</span></h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Female Film Trailblazers initiative (extra card) -->
+    <div class="mt-12 text-center reveal">
+      <div class="inline-block bg-gradient-to-r from-yellow-900/30 to-black p-6 rounded-2xl border border-gold/30 max-w-2xl">
+        <h3 class="text-2xl gold mb-3">Female Film Trailblazers</h3>
+        <p class="text-white/70">Mentorship networking & empowerment – a dedicated hub for women in film. Workshops, screenings and industry connections.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT (fully comprehensive: soapies, indies, mentorship) ===== -->
+<section id="about" class="py-28 px-6 bg-black">
+  <div class="max-w-4xl mx-auto text-center reveal">
+    <h2 class="text-3xl md:text-4xl mb-8 gold">About Lesego & Moodboard Media</h2>
+    <div class="text-white/80 leading-relaxed space-y-5 text-lg">
+      <p>
+        <span class="gold font-semibold">Moodboard Media</span> is the creative heart of storyteller and producer <span class="gold">Lesego</span>. With extensive experience across South African television — including <span class="gold">Generations</span>, <span class="gold">Isidingo</span>, <span class="gold">Muvhango</span>, <span class="gold">DiepCity</span>, <span class="gold">The Black Door</span>, and <span class="gold">The Mabaso Family Reunion</span> — Lesego crafts narratives that linger.
+      </p>
+      <p>
+        Beyond soaps, Lesego has nurtured <span class="gold">independent films</span> and champions the <span class="gold">Female Film Trailblazers</span> initiative: a mentorship and networking platform elevating women behind the camera. Moodboard Media is the umbrella for cinematic production, creative direction, and content strategy that connects.
+      </p>
+      <p class="text-white/60 text-base pt-4">
+        ⚡ From script to screen, we build stories with purpose.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT / CTA ===== -->
+<section id="contact" class="py-28 bg-black text-center px-6 border-t border-white/10">
+  <div class="max-w-xl mx-auto reveal">
+    <h2 class="text-3xl md:text-4xl mb-6 gold">Let's Create Something Powerful</h2>
+    <p class="text-white/70 mb-10 text-lg">
+      For collaborations, creative projects, production inquiries or mentorship opportunities.
+    </p>
+    <a href="mailto:hello@moodboardmedia.com" class="gold-bg text-black px-10 py-4 rounded-full text-lg font-medium hover:bg-yellow-400 transition inline-block shadow-lg">
+      hello@moodboardmedia.com
+    </a>
+    <p class="mt-8 text-white/40 text-sm">or reach out for DiepCity / The Black Door / Female Film Trailblazers</p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="py-8 text-center text-white/30 text-sm border-t border-white/5">
+  <p>© 2026 Moodboard Media — website concept preview created for discussion with Lesego</p>
+</footer>
+
+<!-- ===== REVEAL OBSERVER ===== -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<!-- ensure cinematic intro removal backup & no glitch -->
+<script>
+  (function(){
+    // extra safety if intro survives (should be removed already)
+    setTimeout(() => {
+      const intro = document.getElementById('cinematicIntro');
+      if(intro) intro.style.display = 'none';
+    }, 3500);
+  })();
 </script>
 
 </body>
