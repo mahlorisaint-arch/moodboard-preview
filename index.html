@@ -1,293 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moodboard Media — cinematic brand preview</title>
+  
+  <!-- Core meta for PWA feel -->
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  <!-- Premium fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style>
+    /* ----- MASTER STYLES ----- */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter', sans-serif; background:#000; color:#fff; overflow-x:hidden; }
+    h1,h2,h3,.heading-font{font-family:'Playfair Display', serif; font-weight:600; letter-spacing:-0.02em;}
+    .gold{color:#d4af37;} .gold-border{border-color:#d4af37;} .gold-bg{background-color:#d4af37;}
 
-<title>Moodboard Media — Cinematic Storytelling</title>
+    /* Scroll reveal */
+    .reveal {opacity:0; transform:translateY(40px); transition: all 0.9s cubic-bezier(0.25,0.46,0.45,0.94);}
+    .reveal.active {opacity:1; transform:translateY(0);}
 
-<meta name="description" content="Moodboard Media is a cinematic storytelling studio focused on film, visual storytelling, and creative direction.">
+    /* Cinematic hero zoom */
+    .hero-overlay {position:absolute; inset:0; background:radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.7) 100%); animation: heroZoom 20s infinite alternate ease-in-out;}
+    @keyframes heroZoom {0%{transform:scale(1);}50%{transform:scale(1.02);}100%{transform:scale(1);}}
 
-<meta name="theme-color" content="#000000">
+    /* Parallax section */
+    .parallax-section {position:relative; height:70vh; min-height:500px; background-size:cover; background-position:center; background-attachment:fixed; display:flex; align-items:center; justify-content:center;}
+    .parallax-overlay {position:absolute; inset:0; background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.85) 100%);}
+    .parallax-content {position:relative; z-index:5; max-width:800px; padding:2rem;}
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    /* Work cards */
+    .work-card{position:relative; border-radius:1.5rem; overflow:hidden; aspect-ratio:4/3; cursor:pointer;}
+    .work-card img{width:100%; height:100%; object-fit:cover; transition:transform 1.2s cubic-bezier(0.23,1,0.32,1);}
+    .work-card:hover img{transform:scale(1.1);}
+    .work-card .work-overlay{position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, transparent 100%); opacity:0; transition:opacity 0.5s ease; display:flex; align-items:flex-end; padding:1.5rem;}
+    .work-card:hover .work-overlay{opacity:1;}
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    /* Floating navbar */
+    .floating-nav{position:fixed; top:1.5rem; left:50%; transform:translateX(-50%); width:90%; max-width:1200px; background:rgba(0,0,0,0.5); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.1); border-radius:3rem; padding:0.75rem 2rem; z-index:100; box-shadow:0 20px 40px rgba(0,0,0,0.4);}
 
-<script src="https://cdn.tailwindcss.com"></script>
+    /* Left icon dock */
+    .icon-dock {background: rgba(0,0,0,0.4); backdrop-filter: blur(16px); border:1px solid rgba(255,215,0,0.15); border-radius:3rem; padding:1.5rem 0.75rem; display:flex; flex-direction:column; align-items:center; gap:1.5rem;}
+    .icon-dock a {color:rgba(255,255,255,0.5); transition: all 0.2s; padding:0.5rem; border-radius:1rem;}
+    .icon-dock a:hover {color:#d4af37; background:rgba(212,175,55,0.1); transform:translateY(-2px);}
 
-<style>
+    /* Main glass card */
+    .glass-master {background:rgba(0,0,0,0.3); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.1); border-radius:3rem; overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,0.6);}
 
-body{
-font-family:'Inter',sans-serif;
-background:#000;
-color:#fff;
-overflow-x:hidden;
-}
+    /* Sidebar */
+    .sidebar-premium{background:rgba(0,0,0,0.6); backdrop-filter:blur(16px); border-right:1px solid rgba(212,175,55,0.2);}
 
-h1,h2,h3{
-font-family:'Playfair Display',serif;
-letter-spacing:-0.02em;
-}
+    /* Search input */
+    .search-input{background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.1); border-radius:3rem; padding:0.75rem 1.5rem; color:white; width:100%; transition:all 0.3s;}
+    .search-input:focus{outline:none; border-color:#d4af37; background:rgba(0,0,0,0.5); box-shadow:0 0 0 3px rgba(212,175,55,0.2);}
 
-.gold{
-color:#d4af37;
-}
+    /* Glow particles */
+    .glow-particle{position:fixed; width:12px; height:12px; background:#d4af37; border-radius:50%; pointer-events:none; z-index:9999; filter:blur(6px); opacity:0.3; transition:opacity 0.5s; animation:floatGlow 4s infinite ease-in-out;}
+    @keyframes floatGlow{0%{transform:translateY(0) scale(1); opacity:0.3;}50%{transform:translateY(-8px) scale(1.2); opacity:0.6;}100%{transform:translateY(0) scale(1); opacity:0.3;}}
 
-.gold-bg{
-background:#d4af37;
-}
+    /* Pillar cards */
+    .pillar-card{background:rgba(0,0,0,0.5); backdrop-filter:blur(8px); border:1px solid rgba(212,175,55,0.2); border-radius:2rem; padding:2rem; transition:transform 0.4s, border-color 0.4s;}
+    .pillar-card:hover{transform:translateY(-8px); border-color:#d4af37;}
 
-.hero-overlay{
-position:absolute;
-inset:0;
-background:linear-gradient(to bottom, rgba(0,0,0,.6), rgba(0,0,0,.9));
-}
+    a, button{transition:all 0.3s ease;}
 
-.reveal{
-opacity:0;
-transform:translateY(40px);
-transition:all .8s ease;
-}
-
-.reveal.active{
-opacity:1;
-transform:translateY(0);
-}
-
-.work-card{
-overflow:hidden;
-border-radius:1rem;
-}
-
-.work-card img{
-transition:transform 1s ease;
-}
-
-.work-card:hover img{
-transform:scale(1.05);
-}
-
-</style>
-
+    /* Scrollbar */
+    .custom-scroll::-webkit-scrollbar{width:6px;}
+    .custom-scroll::-webkit-scrollbar-track{background:rgba(255,255,255,0.05);}
+    .custom-scroll::-webkit-scrollbar-thumb{background:#d4af37; border-radius:10px;}
+  </style>
 </head>
-
 <body>
 
-<!-- NAVBAR -->
+<!-- CINEMATIC INTRO -->
+<div id="cinematicIntro" class="fixed inset-0 bg-black z-[9999] flex items-center justify-center">
+  <h1 class="text-4xl md:text-6xl font-playfair text-gold animate-pulse">Moodboard Media</h1>
+</div>
 
-<header class="fixed w-full z-50 bg-black/60 backdrop-blur border-b border-white/10">
-
-<div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
-
-<h2 class="text-lg font-semibold gold">Moodboard Media</h2>
-
-<nav class="hidden md:flex gap-8 text-sm text-white/70">
-
-<a href="#pillars" class="hover:text-white">Pillars</a>
-<a href="#work" class="hover:text-white">Work</a>
-<a href="#about" class="hover:text-white">About</a>
-<a href="#contact" class="hover:text-white">Contact</a>
-
+<!-- Floating navigation -->
+<nav class="floating-nav flex justify-between items-center">
+  <div class="flex items-center gap-2">
+    <span class="heading-font text-xl gold hidden sm:inline">Moodboard Media</span>
+  </div>
+  <div class="hidden md:flex gap-8 text-sm">
+    <a href="#pillars" class="hover:text-gold transition">Pillars</a>
+    <a href="#work" class="hover:text-gold transition">Work</a>
+    <a href="#about" class="hover:text-gold transition">About</a>
+    <a href="#contact" class="hover:text-gold transition">Contact</a>
+  </div>
+  <div class="text-xs text-white/60">preview</div>
 </nav>
 
+<!-- Background texture -->
+<div class="h-screen w-screen overflow-hidden fixed inset-0 -z-10">
+  <img src="https://images.unsplash.com/photo-1505685296765-3a2736de412f?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover opacity-30" alt="cinematic texture">
 </div>
 
-</header>
+<!-- Master layout -->
+<div class="h-screen w-full flex items-center justify-center p-4 pt-24 pb-6">
+  <div class="glass-master w-full max-w-7xl h-full flex flex-col md:flex-row">
 
+    <!-- Sidebar -->
+    <div id="premiumSidebar" class="sidebar-premium w-full md:w-72 flex-none p-6 hidden md:block">
+      <div class="flex items-center gap-3 mb-10">
+        <span class="heading-font text-2xl gold">Moodboard</span>
+      </div>
+      <nav class="flex flex-col gap-3">
+        <a href="#pillars" class="flex items-center gap-3 text-white/70 hover:text-gold py-2 px-3 rounded-xl hover:bg-white/5 transition"><span class="gold text-lg">✦</span> Three Pillars</a>
+        <a href="#work" class="flex items-center gap-3 text-white/70 hover:text-gold py-2 px-3 rounded-xl hover:bg-white/5 transition"><span class="gold text-lg">✦</span> Selected Work</a>
+        <a href="#about" class="flex items-center gap-3 text-white/70 hover:text-gold py-2 px-3 rounded-xl hover:bg-white/5 transition"><span class="gold text-lg">✦</span> About Lesego</a>
+        <a href="#contact" class="flex items-center gap-3 text-white/70 hover:text-gold py-2 px-3 rounded-xl hover:bg-white/5 transition"><span class="gold text-lg">✦</span> Contact</a>
+      </nav>
+      <div class="absolute bottom-8 text-xs text-white/30">Concept by Mahlori Mhlanga · Bantu Stream Connect</div>
+    </div>
 
-<!-- HERO -->
+    <!-- Main content -->
+    <div class="flex-1 overflow-y-auto p-6 space-y-8 custom-scroll">
 
-<section class="relative h-screen flex items-center justify-center text-center">
+      <!-- HERO -->
+      <section class="relative h-[70vh] min-h-[500px] rounded-3xl overflow-hidden reveal">
+        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2070&auto=format&fit=crop" class="absolute w-full h-full object-cover">
+        <div class="hero-overlay"></div>
+        <div class="absolute bottom-0 left-0 p-8 md:p-12 z-10 max-w-3xl">
+          <h1 class="text-6xl md:text-8xl heading-font gold mb-4">Moodboard Media</h1>
+          <p class="text-xl md:text-2xl text-white/90 mb-6">Creative storytelling. Strategic content. Industry experience.</p>
+          <a href="#pillars" class="inline-block border-2 border-gold px-10 py-4 rounded-full text-gold hover:bg-gold hover:text-black transition text-lg tracking-wide">Explore the vision</a>
+        </div>
+      </section>
 
-<img src="https://images.unsplash.com/photo-1517602302552-471fe67acf66?q=80&w=2070&auto=format&fit=crop"
-class="absolute w-full h-full object-cover opacity-40">
+      <!-- PILLARS -->
+      <section id="pillars" class="reveal py-8">
+        <h2 class="text-4xl md:text-5xl heading-font gold text-center mb-12">Three pillars</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="pillar-card">
+            <h3 class="text-2xl gold mb-4">Lesego Says</h3>
+            <p class="text-white/70 leading-relaxed">Creative Producer specializing in story development, script editing and script writing.</p>
+          </div>
+          <div class="pillar-card">
+            <h3 class="text-2xl gold mb-4">Moodboard Media</h3>
+            <p class="text-white/70 leading-relaxed">Creative content agency capturing events, building social media narratives and developing content strategy.</p>
+          </div>
+          <div class="pillar-card">
+            <h3 class="text-2xl gold mb-4">Female Film Trailblazers</h3>
+            <p class="text-white/70 leading-relaxed">An initiative empowering emerging female filmmakers through mentorship and networking.</p>
+          </div>
+        </div>
+      </section>
 
-<div class="hero-overlay"></div>
+      <!-- PARALLAX -->
+      <section class="parallax-section rounded-3xl my-8 reveal" style="background-image:url('https://images.unsplash.com/photo-1536240474400-95dad982ffb9?q=80&w=2069&auto=format&fit=crop');">
+        <div class="parallax-overlay"></div>
+        <div class="parallax-content text-center">
+          <h2 class="text-4xl md:text-5xl heading-font gold mb-6">Every story begins with a vision</h2>
+          <p class="text-white/80 text-lg max-w-2xl mx-auto">Moodboard Media brings together storytelling, production, and creative strategy to shape narratives for modern audiences.</p>
+        </div>
+      </section>
 
-<div class="relative max-w-3xl px-6 reveal">
+      <!-- WORK -->
+      <section id="work" class="reveal py-8">
+        <h2 class="text-4xl md:text-5xl heading-font gold text-center mb-12">Selected productions</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="work-card"><img src="https://images.unsplash.com/photo-1517602302552-471fe67acf66?q=80&w=2070&auto=format&fit=crop" alt="DiepCity"><div class="work-overlay"><h3 class="text-3xl gold">DiepCity</h3></div></div>
+          <div class="work-card"><img src="https://images.unsplash.com/photo-1497032205916-ac775f0649ae?q=80&w=2072&auto=format&fit=crop" alt="The Black Door"><div class="work-overlay"><h3 class="text-3xl gold">The Black Door</h3></div></div>
+          <div class="work-card"><img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2070&auto=format&fit=crop" alt="The Mabaso Family Reunion"><div class="work-overlay"><h3 class="text-3xl gold">The Mabaso Family Reunion</h3></div></div>
+        </div>
+      </section>
 
-<p class="text-sm uppercase tracking-widest text-white/60 mb-6">
-Concept Website Preview
-</p>
+      <!-- ABOUT -->
+      <section id="about" class="reveal py-8">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="text-4xl heading-font gold mb-6">About Lesego</h2>
+          <p class="text-white/80 text-lg leading-relaxed mb-8">Lesego Soke is a creative producer working across film, television and digital storytelling. Her work focuses on building meaningful narratives while creating platforms that empower emerging creators.</p>
+        </div>
+      </section>
 
-<h1 class="text-5xl md:text-6xl font-semibold mb-6 leading-tight">
+      <!-- CONTACT -->
+      <section id="contact" class="reveal py-12 text-center border-t border-white/10">
+        <h2 class="text-4xl heading-font gold mb-4">Let's collaborate</h2>
+        <p class="text-white/70 mb-8">Moodboard Media · Creative storytelling for modern audiences.</p>
+        <a href="#" class="inline-block border-2 border-gold text-gold px-12 py-4 rounded-full text-lg hover:bg-gold hover:text-black transition">Start a conversation</a>
+        <div class="mt-12 text-white/30 text-sm">Concept preview created by Mahlori Mhlanga · Web Developer & Founder of Bantu Stream Connect</div>
+      </section>
 
-Cinematic Stories  
-<span class="gold">That Inspire</span>
-
-</h1>
-
-<p class="text-lg text-white/70 mb-8">
-
-Moodboard Media is a creative studio dedicated to cinematic storytelling, visual direction, and meaningful media that connects with audiences.
-
-</p>
-
-<a href="#contact"
-class="gold-bg text-black px-8 py-3 rounded-full text-sm font-medium">
-
-Get In Touch
-
-</a>
-
+    </div>
+  </div>
 </div>
 
-</section>
-
-
-<!-- PILLARS -->
-
-<section id="pillars" class="py-28 px-6">
-
-<div class="max-w-6xl mx-auto text-center">
-
-<h2 class="text-3xl mb-16 reveal">Our Creative Pillars</h2>
-
-<div class="grid md:grid-cols-3 gap-10 text-left">
-
-<div class="reveal">
-
-<h3 class="text-xl mb-4 gold">Productions</h3>
-
-<p class="text-white/70">
-We create cinematic visual stories across film, digital media, and creative campaigns designed to leave lasting impressions.
-</p>
-
-</div>
-
-<div class="reveal">
-
-<h3 class="text-xl mb-4 gold">Creative Direction</h3>
-
-<p class="text-white/70">
-From concept to execution, we shape visual identities and creative narratives that elevate brands and storytellers.
-</p>
-
-</div>
-
-<div class="reveal">
-
-<h3 class="text-xl mb-4 gold">Education</h3>
-
-<p class="text-white/70">
-We support the next generation of storytellers through workshops, mentorship, and creative learning opportunities.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- WORK -->
-
-<section id="work" class="py-28 bg-black px-6">
-
-<div class="max-w-6xl mx-auto">
-
-<h2 class="text-3xl text-center mb-16 reveal">Selected Work</h2>
-
-<div class="grid md:grid-cols-3 gap-8">
-
-<div class="work-card reveal">
-
-<img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2069&auto=format&fit=crop">
-
-</div>
-
-<div class="work-card reveal">
-
-<img src="https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?q=80&w=2069&auto=format&fit=crop">
-
-</div>
-
-<div class="work-card reveal">
-
-<img src="https://images.unsplash.com/photo-1497032205916-ac775f0649ae?q=80&w=2069&auto=format&fit=crop">
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ABOUT -->
-
-<section id="about" class="py-28 px-6">
-
-<div class="max-w-3xl mx-auto text-center reveal">
-
-<h2 class="text-3xl mb-8">About Moodboard Media</h2>
-
-<p class="text-white/70 leading-relaxed">
-
-Moodboard Media is a creative storytelling studio focused on cinematic narratives, visual identity, and impactful media experiences.  
-Through film, creative direction, and collaborative storytelling, we aim to create work that resonates emotionally and visually with audiences.
-
-</p>
-
-</div>
-
-</section>
-
-
-<!-- CONTACT -->
-
-<section id="contact" class="py-28 bg-black text-center px-6">
-
-<div class="max-w-xl mx-auto reveal">
-
-<h2 class="text-3xl mb-6">Let's Create Something Powerful</h2>
-
-<p class="text-white/70 mb-10">
-
-For collaborations, creative projects, or production inquiries.
-
-</p>
-
-<a href="mailto:hello@moodboardmedia.com"
-class="gold-bg text-black px-8 py-3 rounded-full text-sm font-medium">
-
-hello@moodboardmedia.com
-
-</a>
-
-</div>
-
-</section>
-
-
-<!-- FOOTER -->
-
-<footer class="py-10 text-center text-white/40 text-sm border-t border-white/10">
-
-<p>© 2026 Moodboard Media</p>
-
-</footer>
-
-
+<!-- Scripts -->
 <script>
+(function(){
+  // Cinematic intro
+  setTimeout(()=>{const i=document.getElementById('cinematicIntro');i.style.transition='opacity 1s ease'; i.style.opacity=0; setTimeout(()=>i.remove(),1000);},3000);
 
-const observer = new IntersectionObserver(entries => {
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add('active')
-}
-})
-})
+  // Reveal on scroll
+  const reveals=document.querySelectorAll('.reveal');
+  function activateReveal(){for(let el of reveals){if(el.getBoundingClientRect().top<window.innerHeight-120){el.classList.add('active');}}}
+  window.addEventListener('scroll', activateReveal);
+  activateReveal();
 
-document.querySelectorAll('.reveal').forEach(el=>{
-observer.observe(el)
-})
+  // Glow particles
+  document.addEventListener('mousemove',(e)=>{const g=document.createElement('div'); g.className='glow-particle'; g.style.left=e.clientX+'px'; g.style.top=e.clientY+'px'; document.body.appendChild(g); setTimeout(()=>g.remove(),300);});
 
+  // Mobile menu toggle
+  const menuBtn=document.getElementById('mobileMenuBtn'), sidebar=document.getElementById('premiumSidebar');
+  if(menuBtn){menuBtn.addEventListener('click',()=>{sidebar.classList.toggle('hidden');})}
+})();
 </script>
 
 </body>
